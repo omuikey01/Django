@@ -1,0 +1,13 @@
+{% extends "app1/base.html" %}
+
+{% block Content %}
+    <form method="post" action="{% url 'registerdata' %}" >
+        {% csrf_token %}
+        <h1> Registration </h1>
+        <h2 style="color: red;"> {{data}} </h2>
+        {{formdata.key}}
+        <div class="buttons_form">
+            <button> Registration </button>
+        </div>
+    </form>
+{% endblock  %}

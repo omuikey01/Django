@@ -1,0 +1,69 @@
+{% extends "app1/base.html" %}
+
+{% block Content %}
+<section class="dash">
+    <h1 class="firsth1"> Dashboard</h1>
+    <div style="width: 90%; margin: auto;">
+        <h2 align="right"> Name {{name}} </h2>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div class="leftboard">
+                Left
+                <h2>Write Your Query {{mail}} </h2>
+
+                
+                <form action="{% url 'querydata' %}" method="post">
+                    {% csrf_token %}
+                    <div style="color: red;" > {{msg}} </div>
+                    {{formdata.key}}
+                    <div class="buttons_form">
+                        <button name="qsubmitbtn" value={{mail}}> Query Submit </button>
+                    </div>
+                </form>
+
+
+
+                <div class="buttons_form">
+                    <form action="{% url 'shawtabledatabtn' %}" method="post">
+                        {% csrf_token %}
+                        <button name="btnemail" value={{mail}}>All Your Query </button>
+                    </form>
+                    {% if tabledata %}
+                    <table border="1">
+                        <tr>
+                            <th> Email </th>
+                            <th> Subject </th>
+                            <th> Post Date </th>
+                            <th style="width: 280px;"> Data </th>
+                            <th> Edit </th>
+                            <th> Detele </th>
+                        </tr>
+                        <form action="{% url 'EditDeleteData' %}" method="post" class="editdeleteDataClass" >
+                            
+                            {% for i in tabledata %}
+                            {% csrf_token %}
+                            <tr>
+                                <td> {{i.Query_Email}} </td>
+                                <td> {{i.Query_Sub}} </td>
+                                <td> {{i.QueryDate}} </td>
+                                <td> {{i.Query_Query}} </td>
+                                <td>
+                                    <button style="padding: 5px 10px; width: fit-content; font-size: 15px; " name="editbtn" value={{i.id}}>Edit</button> 
+                                </td>
+                                <td> 
+                                    <button style="padding: 5px 10px; width: fit-content; font-size: 15px; " name="deletebtn" value={{i.id}} >Delete</button>
+                                </td>
+                            </tr>
+                        </form>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="rightboard">
+                Right
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "app1/base.html" %}
+
+{% block Content %}
+<form action="{% url 'logindata' %}" method="post">
+    {% csrf_token %}
+    <h1> Login page </h1> 
+    <h2> {{data}} </h2>
+    {{formdata.key}}
+
+    <div class="buttons_form">
+        <button> Login </button>
+    </div>
+</form>    
+
+{% endblock  %}

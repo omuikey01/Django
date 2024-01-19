@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        text-decoration: none;
+      }
+      .nav_data {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: row;
+        line-height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      ul {
+        display: flex;
+      }
+      ul li {
+        margin: 0 10px;
+      }
+      
+      form {
+        width: 550px;
+        margin: auto;
+        font-size: 20px;
+        margin-top: 50px;
+      }
+      form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      form label {
+        display: inline-block;
+        width: 170px;
+      }
+      form input {
+        width: 300px;
+        display: inline-block;
+        margin: 10px;
+        font-size: 20px;
+        padding: 5px 10px;
+        outline: none;
+      }
+      .buttons_form {
+        width: 100%;
+        text-align: center;
+      }
+      button {
+        width: 200px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 20px;
+        font-family :'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin: 20px 0;
+      }
+     
+      .dash .firsth1 {
+        text-align: center;
+        font-size: 25px;
+        font-family: 'Courier New', Courier, monospace;
+        background-color: cornflowerblue;
+        line-height: 50px;
+      }
+      #id_Query {
+        height: 100px;
+        width: 300px;
+        margin: auto;
+        padding: 10px;
+        font-size: 20px;
+        margin-left: 10px;
+      }
+      table {
+        max-width: 1000px;
+      }
+      table tr td, th{
+        padding: 10px;
+        overflow-x: hidden;
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <nav style="width: 90vw; margin: auto;">
+        <div class="nav_data">
+          <div>
+            <a href="{% url '' %}">Home</a>
+          </div>
+          <ul>
+            <li>
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+              <a href="{% url 'service' %}">Service</a>
+            </li>
+            <li>
+              <a href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+
+          <ul>
+            {% if btn == "RLol" %}
+            <li>
+              <a href="{% url 'register' %}">Registration</a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+            {% if btn == "" %}
+            <li>
+              <a href="{% url 'dash' %}">Profile</a>
+            </li>
+            <li>
+              <a href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <section style="min-height: 500px; background-color: aquamarine;">
+      {% block Content %}
+
+      {% endblock %}
+    </section>
+
+    <section style="height: 100px; background-color :brown;">FOOTER</section>
+  </body>
+</html>
